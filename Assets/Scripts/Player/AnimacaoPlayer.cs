@@ -16,6 +16,7 @@ public class AnimacaoPlayer : MonoBehaviour
         animator.SetBool("run", false);
         animator.SetBool("fall", false);
         animator.SetBool("jump",false);
+        animator.SetBool("wallSlider",false);
     }
 
     public void PlayRun(){
@@ -23,6 +24,7 @@ public class AnimacaoPlayer : MonoBehaviour
         animator.SetBool("run", true);
         animator.SetBool("fall", false);
         animator.SetBool("jump",false);
+        animator.SetBool("wallSlider",false);
     }
 
     public void PlayFall(){
@@ -30,6 +32,7 @@ public class AnimacaoPlayer : MonoBehaviour
         animator.SetBool("run", false);
         animator.SetBool("fall", true);
         animator.SetBool("jump",false);
+        animator.SetBool("wallSlider",false);
     }
 
     public void PlayJump(){
@@ -37,6 +40,7 @@ public class AnimacaoPlayer : MonoBehaviour
         animator.SetBool("run", false);
         animator.SetBool("fall", false);
         animator.SetBool("jump",true);
+        animator.SetBool("wallSlider",false);
     }
 
     public void PlayDoubleJump(){
@@ -45,5 +49,22 @@ public class AnimacaoPlayer : MonoBehaviour
         animator.SetBool("fall", false);
         animator.SetBool("jump",false);
         animator.SetTrigger("doubleJump");
+        animator.SetBool("wallSlider",false);
+    }
+
+    public void PlayWallSlider(){
+        animator.SetBool("idle",false);
+        animator.SetBool("run", false);
+        animator.SetBool("fall", false);
+        animator.SetBool("jump",false);
+        animator.SetBool("wallSlider",true);
+    }
+
+    public void PlayDamagePlayer(){
+        animator.SetTrigger("damage");
+    }
+
+    public void PlayerDeath(){
+        animator.SetTrigger("death");
     }
 }
