@@ -11,21 +11,23 @@ public class MovimentarPlayer : MonoBehaviour
     private bool puloDuplo = false;
     public float forcaDoPuloY = 1.5f;
     public float forcaDoPuloX;
+    private bool habilitaPulo = false;
 
     private Coroutine coroutinePulo;
 
     // Update is called once per frame
     void Update()
     {
+        if(PlayerMng.Instance.movimentacaoHabilitada == false) return;
         Movimentar();
         Pular(); 
-        PularDaParede();
-               
+        PularDaParede();               
     }
 
     private void PularDaParede(){
         //Verificar se o jogador não está no chão e se ele está na parede
         if(PlayerMng.pePlayer.EstaNoChao == false && 
+        PlayerMng.cabecaPlayer.LimiteDaCabeca == false &&
         (PlayerMng.direitaPlayer.LimiteDireita == true ||
         PlayerMng.esquerdaPlayer.LimiteEsquerda == true)){
             //Ativar animação na parede
@@ -46,10 +48,11 @@ public class MovimentarPlayer : MonoBehaviour
     private void Pular(){
         //Verificar se o jogador clicou na tecla para pular
         if(Input.GetButtonDown("Jump")){
-            //Verificar se o jogador está no chão
-            if(PlayerMng.pePlayer.EstaNoChao == true){
+            //Verificar se o jogador está apto a pular
+            if(habilitaPulo == true){
                 //Ativo o Pulo
                 PlayerMng.animacaoPlayer.PlayJump(); //Ativar a animação do pulo
+                habilitaPulo = false;
                 estaPulando = true;//Definir um estado de pulo
                 puloDuplo = true;//Definir um estado de pulo duplo
                 AtivarTempoPulo();//Ativar o tempo de pulo
@@ -129,5 +132,17 @@ public class MovimentarPlayer : MonoBehaviour
         //Movimentar o player
         Vector3 direcaoMovimento = new Vector3(eixoX,0,0);
         transform.position += direcaoMovimento * velocidade * Time.deltaTime;
+    }
+
+    public void HabilitaPulo(){
+        habilitaPulo = true;
+    }
+
+    public void CancelarPulo(){
+        if(coroutinePulo != null){
+            StopCoroutine(coroutinePulo);
+        }
+        forcaDoPuloX = 0;
+        estaPulando = false;
     }
 }

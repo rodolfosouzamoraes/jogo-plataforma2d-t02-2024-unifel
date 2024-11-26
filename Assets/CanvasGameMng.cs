@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,17 +24,24 @@ public class CanvasGameMng : MonoBehaviour
     public Sprite[] sptsBarraDeVida;
     private int vidas;
     public bool jogadorMorreu = false;
+    private int totalItensColetados = 0;
+    public float tempoDoJogo;
+    public bool fimDoTempo;
+
 
     // Start is called before the first frame update
     void Start()
     {
         vidas = sptsBarraDeVida.Length -1;
+        txtTotalItensColetados.text = $"x{totalItensColetados}";
+        txtTempoDeJogo.text = ((int)tempoDoJogo).ToString();
+        fimDoTempo = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        ContarTempo();
     }
 
     public void DecrementarVidaJogador(){
@@ -51,8 +59,8 @@ public class CanvasGameMng : MonoBehaviour
         vidas = 0;
         imgBarraDeVida.sprite = sptsBarraDeVida[vidas];
         PlayerMng.animacaoPlayer.PlayerDeath();//Ativar a animação de morte
-        //Desabilitar a Movimentação do jogador
-        //Remover a simulacão da física
+        PlayerMng.Instance.DesabilitarMovimentacao();//Desabilitar a Movimentação do jogador
+        PlayerMng.Instance.RemoverSimulacaoDaFisica();//Remover a simulacão da física
         StartCoroutine(ReiniciarLevel());//Contar um tempo para reiniciar a cena
     }
 
@@ -63,5 +71,31 @@ public class CanvasGameMng : MonoBehaviour
 
     public void ReiniciarLevelAtual(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void IncrementarItemColetavel(){
+        totalItensColetados++;
+        txtTotalItensColetados.text = $"x{totalItensColetados}";
+    }
+
+    public void ContarTempo(){
+        if(fimDoTempo == true) return;
+
+        tempoDoJogo -= Time.deltaTime;
+        if(tempoDoJogo <= 0){
+            fimDoTempo = true;
+            vidas = 0;
+            DecrementarVidaJogador();
+        }
+        else{
+            txtTempoDeJogo.text = ((int)tempoDoJogo).ToString();
+        }
+    }
+
+    public void FimDoJogo(){
+        fimDoTempo = true;
+        PlayerMng.Instance.CongelarPlayer();//Congelar o player
+        //Salvar os dados do level 
+        //Exibir uma tela final depois de um tempo
     }
 }

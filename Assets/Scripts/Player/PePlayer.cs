@@ -22,4 +22,10 @@ public class PePlayer : MonoBehaviour
             estaNoChao = false;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D colisor){
+        if(colisor.gameObject.layer == 6){
+            PlayerMng.movimentarPlayer.HabilitaPulo();
+        }
+    }
 }

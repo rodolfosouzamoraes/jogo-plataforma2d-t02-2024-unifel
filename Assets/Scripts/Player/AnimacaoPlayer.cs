@@ -67,4 +67,8 @@ public class AnimacaoPlayer : MonoBehaviour
     public void PlayerDeath(){
         animator.SetTrigger("death");
     }
+
+    public void HabilitaMovimentacao(){
+        PlayerMng.Instance.HabilitarMovimentacao();
+    }
 }

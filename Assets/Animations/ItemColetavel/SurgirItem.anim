@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Enable
+  m_Name: SurgirItem
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,21 +21,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 0261e5a97199ce64bbef0c385009d46d, type: 3}
-    - time: 0.083333336
       value: {fileID: -1347634116, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
-    - time: 0.16666667
+    - time: 0.05
       value: {fileID: -557037353, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
-    - time: 0.25
+    - time: 0.1
       value: {fileID: -2138059195, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
-    - time: 0.33333334
+    - time: 0.15
       value: {fileID: -787580516, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
-    - time: 0.41666666
+    - time: 0.2
       value: {fileID: 626386147, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: -1065111127, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
     attribute: m_Sprite
-    path: 
+    path: Corpo
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -47,7 +45,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 527666128
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -56,7 +54,6 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 0261e5a97199ce64bbef0c385009d46d, type: 3}
     - {fileID: -1347634116, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
     - {fileID: -557037353, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
     - {fileID: -2138059195, guid: d21ff765e79854c4182e1cb33e2fa197, type: 3}
@@ -68,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.51666665
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,11 +84,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.5
-    functionName: HabilitaMovimentacao
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

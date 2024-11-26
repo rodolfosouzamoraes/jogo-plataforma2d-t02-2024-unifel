@@ -13,6 +13,7 @@ public class CabecaPlayer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D colisor){
         if(colisor.gameObject.layer == 6){
             limiteDaCabeca = true;
+            PlayerMng.movimentarPlayer.CancelarPulo();
         }
     }
 
