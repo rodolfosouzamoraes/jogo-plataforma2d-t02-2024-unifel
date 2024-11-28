@@ -27,6 +27,8 @@ public class CanvasGameMng : MonoBehaviour
     private int totalItensColetados = 0;
     public float tempoDoJogo;
     public bool fimDoTempo;
+    public GameObject painelFimDoJogo;
+    public TextMeshProUGUI txtTotalFrutasFimDoJogo; 
 
 
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class CanvasGameMng : MonoBehaviour
         txtTotalItensColetados.text = $"x{totalItensColetados}";
         txtTempoDeJogo.text = ((int)tempoDoJogo).ToString();
         fimDoTempo = false;
+        painelFimDoJogo.SetActive(false);
     }
 
     // Update is called once per frame
@@ -96,6 +99,22 @@ public class CanvasGameMng : MonoBehaviour
         fimDoTempo = true;
         PlayerMng.Instance.CongelarPlayer();//Congelar o player
         //Salvar os dados do level 
-        //Exibir uma tela final depois de um tempo
+        StartCoroutine(ExibirTelaFinalDoLevel());//Exibir uma tela final depois de um tempo
+    }
+
+    IEnumerator ExibirTelaFinalDoLevel(){
+        yield return new WaitForSeconds(3f);
+        painelFimDoJogo.SetActive(true);
+        int contagem = 0;
+        while(contagem < totalItensColetados){
+            contagem++;
+            txtTotalFrutasFimDoJogo.text = $"x{contagem}";
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    public void ReiniciarLevelPelaTela(){
+        //Carregar tela de loading
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

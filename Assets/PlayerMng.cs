@@ -60,4 +60,11 @@ public class PlayerMng : MonoBehaviour
         ResetarVelocidadeDaFisica();
         animacaoPlayer.PlayIdle();
     }
+
+    public void ExpelirPlayer(){
+        int numeroSorteado = new System.Random().Next(0,2);
+        int forcaX = numeroSorteado == 0 ? -1000 : 1000;
+        ResetarVelocidadeDaFisica();
+        ArremessarPlayer(forcaX,1000);
+    }
 }

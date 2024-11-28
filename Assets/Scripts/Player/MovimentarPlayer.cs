@@ -6,7 +6,6 @@ public class MovimentarPlayer : MonoBehaviour
 {
     //Variável de velocidade de movimentação
     public float velocidade; 
-
     private bool estaPulando = false;
     private bool puloDuplo = false;
     public float forcaDoPuloY = 1.5f;
